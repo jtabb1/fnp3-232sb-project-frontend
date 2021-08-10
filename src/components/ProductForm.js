@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-export default function GymMemberForm({createGymMember}) {
+export default function ProductForm({createProduct}) {
     const [formData, setFormData] = useState({name: "", focus: ""})
 
     function handleChange(e) {
@@ -10,7 +10,7 @@ export default function GymMemberForm({createGymMember}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        createGymMember(formData)
+        createProduct(formData)
         setFormData({name: "", focus: ""})
     }
 

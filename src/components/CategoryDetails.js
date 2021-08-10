@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../constraints/index.js";
-import GymMember from "./GymMember.js";
-import GymMemberForm from "./GymMemberForm.js";
+import Product from "./Product.js";
+import ProductForm from "./ProductForm.js";
 
 export default function GymDetails() {
   const [gym, setGym] = useState(null);
@@ -17,7 +17,7 @@ export default function GymDetails() {
   }, [id]);
 
   function uniqueFocuses() {
-    const focuses = gym.gym_members.map(gymMember => gymMember.focus)
+    const focuses = gym.gym_members.map(product => product.focus)
     const uniqueFocuses = [...new Set(focuses)];
     return uniqueFocuses
   }
@@ -26,26 +26,26 @@ export default function GymDetails() {
       return uniqueFocuses().map(focus => <option value={focus}>{focus}</option>)
   }
 
-  function filteredGymMembers() {
+  function filteredProducts() {
     if (selectedFocus === "ALL") {
         return gym.gym_members
     }
-    return gym.gym_members.filter(gymMember => gymMember.focus === selectedFocus)
+    return gym.gym_members.filter(product => product.focus === selectedFocus)
   }
 
   function handleSelectFocus(e) {
       setSelectedFocus(e.target.value)
   } 
 
-  function createGymMember(gymMemberDetails) {
-    const newGymMember = {
-      ...gymMemberDetails,
+  function createProduct(productDetails) {
+    const newProduct = {
+      ...productDetails,
       gym_id: id,
     };
 
     fetch(BASE_URL + "/gym_members", {
       method: "POST",
-      body: JSON.stringify(newGymMember),
+      body: JSON.stringify(newProduct),
     })
       .then((res) => res.json())
       .then((json) => {
@@ -65,11 +65,11 @@ export default function GymDetails() {
               <option value="ALL">All Focuses</option>
               {populateFocusOptions()}
           </select>
-          {filteredGymMembers().map((gymMember) => (
-            <GymMember gymMember={gymMember} />
+          {filteredProducts().map((product) => (
+            <Product product={product} />
           ))}
           <h3>Add new Gym Member</h3>
-          <GymMemberForm createGymMember={createGymMember} />
+          <ProductForm createProduct={createProduct} />
         </>
       )}
     </div>
