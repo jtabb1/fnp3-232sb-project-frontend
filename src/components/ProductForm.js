@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 export default function ProductForm({createProduct}) {
-    const [formData, setFormData] = useState({name: "", focus: ""})
+    const [formData, setFormData] = useState({name: "", price: []})
 
     function handleChange(e) {
         formData[e.target.name] = e.target.value
@@ -11,7 +11,7 @@ export default function ProductForm({createProduct}) {
     function handleSubmit(e) {
         e.preventDefault()
         createProduct(formData)
-        setFormData({name: "", focus: ""})
+        setFormData({name: "", price: []})
     }
 
 
@@ -19,8 +19,8 @@ export default function ProductForm({createProduct}) {
         <form>
             <label>Name: </label>
             <input onChange={handleChange} name="name" value={formData.name}/>
-            <label>Focus: </label>
-            <input onChange={handleChange} name="focus" value={formData.focus}/>
+            <label>Price: </label>
+            <input onChange={handleChange} name="price" value={formData.price}/>
             <button onClick={handleSubmit}>List Product!</button>
         </form>
     )
