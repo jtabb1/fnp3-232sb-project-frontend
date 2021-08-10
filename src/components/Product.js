@@ -4,7 +4,7 @@ export default function Product({ product }) {
   return (
     <div>
       <p>Name: {product.name}</p>
-      <p>Focus: {product.focus}</p>
+      <p>Price: {product.price}</p>
     </div>
   );
 }
