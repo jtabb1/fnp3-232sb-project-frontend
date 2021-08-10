@@ -1,15 +1,15 @@
 import React, { useState } from "react"; 
 import { Link } from "react-router-dom";
-import "../styles/Gym.css"
+import "../styles/Category.css"
 
-export default function Gym({ gym, deleteGym, updateGym }) {
-  const [newGym, setNewGym] = useState({ ...gym });
+export default function Category({ category, deleteCategory, updateCategory }) {
+  const [newCategory, setNewCategory] = useState({ ...category });
   const [editMode, setEditMode] = useState(false);
 
   function handleChange(e) {
-    const updatedValue = { ...newGym };
+    const updatedValue = { ...newCategory };
     updatedValue[e.target.name] = e.target.value;
-    setNewGym({ ...updatedValue });
+    setNewCategory({ ...updatedValue });
   }
 
   function toggleEdit() {
@@ -18,28 +18,28 @@ export default function Gym({ gym, deleteGym, updateGym }) {
 
   function handleUpdate(e) {
     e.preventDefault();
-    updateGym(newGym);
+    updateCategory(newCategory);
     setEditMode(false);
   }
 
   return (
-    <div className="gym-card">
-      <Link to={`/gyms/${gym.id}`}>
-        <p>{gym.name}</p>
+    <div className="category-card">
+      <Link to={`/categories/${category.id}`}>
+        <p>{category.name}</p>
       </Link>
-      <p>{gym.location}</p>
+      <p>{category.location}</p>
       {editMode && (
         <>
-          <button onClick={() => deleteGym(gym)}>Delete Gym</button>
+          <button onClick={() => deleteCategory(category)}>Delete Category</button>
 
           <form onSubmit={handleUpdate}>
-            <input name="name" value={newGym.name} onChange={handleChange} />
+            <input name="name" value={newCategory.name} onChange={handleChange} />
             <input
               name="location"
-              value={newGym.location}
+              value={newCategory.location}
               onChange={handleChange}
             />
-            <button type="submit">Update Gym</button>
+            <button type="submit">Update Category</button>
           </form>
         </>
       )}

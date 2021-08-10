@@ -1,50 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../constraints/index.js";
-import Gym from "./Gym.js";
-import GymForm from "./GymForm.js";
-import '../styles/GymContainer.css'
+import Category from "./Category.js";
+import CategoryForm from "./CategoryForm.js";
+import '../styles/CategoryContainer.css'
 
-export default function GymContainer() {
-  const [gyms, setGyms] = useState(null);
+export default function CategoryContainer() {
+  const [categories, setCategorys] = useState(null);
 
   // READ
 
   useEffect(() => {
-    fetch(BASE_URL + "gyms")
+    fetch(BASE_URL + "categories")
       .then((res) => res.json())
-      .then((json) => setGyms(json));
+      .then((json) => setCategorys(json));
   }, []);
 
-  function populateGyms() {
-    console.log(gyms);
-    return gyms.map((gym) => (
-      <Gym gym={gym} deleteGym={deleteGym} updateGym={updateGym} key={gym.id} />
+  function populateCategorys() {
+    console.log(categories);
+    return categories.map((category) => (
+      <Category category={category} deleteCategory={deleteCategory} updateCategory={updateCategory} key={category.id} />
     ));
   }
 
   // CREATE
 
-  function createGym(gym) {
-    fetch(BASE_URL + "gyms", {
+  function createCategory(category) {
+    fetch(BASE_URL + "categories", {
       method: "POST",
-      body: JSON.stringify(gym),
+      body: JSON.stringify(category),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((json) => setGyms([...gyms, json]));
+      .then((json) => setCategorys([...categories, json]));
 
     // PESSIMISTIC RENDERING
   }
 
   // UPDATE
 
-  function updateGym(gym) {
-    fetch(BASE_URL + "gyms/" + gym.id, {
+  function updateCategory(category) {
+    fetch(BASE_URL + "categories/" + category.id, {
       method: "PATCH",
-      body: JSON.stringify(gym),
+      body: JSON.stringify(category),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -53,30 +53,30 @@ export default function GymContainer() {
 
     // OPTIMISTIC RENDERING
 
-    const newGyms = gyms.map((g) => {
-      if (g.id === gym.id) {
-        g = gym;
+    const newCategorys = categories.map((g) => {
+      if (g.id === category.id) {
+        g = category;
       }
       return g;
     });
-    setGyms(newGyms);
+    setCategorys(newCategorys);
   }
 
   // DELETE
 
-  function deleteGym(gym) {
-    fetch(BASE_URL + "gyms/" + gym.id, {
+  function deleteCategory(category) {
+    fetch(BASE_URL + "categories/" + category.id, {
       method: "DELETE",
     });
-    const newGyms = gyms.filter((g) => g.id !== gym.id);
-    setGyms(newGyms);
+    const newCategorys = categories.filter((g) => g.id !== category.id);
+    setCategorys(newCategorys);
   }
 
   return (
     <div>
-      <h2 className="gyms-header">All Gyms</h2>
-      <div className="gym-container">{gyms && populateGyms()}</div>
-      <GymForm createGym={createGym} />
+      <h2 className="categories-header">All Categorys</h2>
+      <div className="category-container">{categories && populateCategorys()}</div>
+      <CategoryForm createCategory={createCategory} />
     </div>
   );
 }

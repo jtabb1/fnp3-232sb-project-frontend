@@ -1,8 +1,8 @@
-.gym-container {
+.category-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.gyms-header {
+.categorys-header {
     text-align: center;
 }

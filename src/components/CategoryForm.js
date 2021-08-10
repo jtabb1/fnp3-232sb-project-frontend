@@ -1,27 +1,27 @@
 import React, {useState} from 'react'
 
-export default function GymForm({createGym}) {
-    const [gym, setGym] = useState({name: "", location: ""})
+export default function CategoryForm({createCategory}) {
+    const [category, setCategory] = useState({name: "", location: ""})
 
     function handleChange(e) {
-        const updatedValue = {...gym}
+        const updatedValue = {...category}
         updatedValue[e.target.name] = e.target.value
-        setGym(updatedValue)
+        setCategory(updatedValue)
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        createGym(gym)
+        createCategory(category)
     } 
 
 
     return (
         <div>
-            <h2>Create New Gym</h2>
+            <h2>Create New Category</h2>
             <form onSubmit={handleSubmit}>
-                <input name="name" value={gym.name} onChange={handleChange} />
-                <input name="location" value={gym.location} onChange={handleChange} />
-                <button type="submit">Create Gym</button>
+                <input name="name" value={category.name} onChange={handleChange} />
+                <input name="location" value={category.location} onChange={handleChange} />
+                <button type="submit">Create Category</button>
             </form>
         </div>
     )

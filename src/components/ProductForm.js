@@ -21,7 +21,7 @@ export default function ProductForm({createProduct}) {
             <input onChange={handleChange} name="name" value={formData.name}/>
             <label>Focus: </label>
             <input onChange={handleChange} name="focus" value={formData.focus}/>
-            <button onClick={handleSubmit}>Join Gym!</button>
+            <button onClick={handleSubmit}>List Product!</button>
         </form>
     )
 }

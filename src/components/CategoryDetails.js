@@ -4,71 +4,70 @@ import { BASE_URL } from "../constraints/index.js";
 import Product from "./Product.js";
 import ProductForm from "./ProductForm.js";
 
-export default function GymDetails() {
-  const [gym, setGym] = useState(null);
-  const [selectedFocus, setSelectedFocus] = useState("ALL")
+export default function CategoryDetails() {
+  const [category, setCategory] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState("ALL")
 
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(BASE_URL + "gyms/" + id)
+    fetch(BASE_URL + "categories/" + id)
       .then((res) => res.json())
-      .then((json) => setGym(json));
+      .then((json) => setCategory(json));
   }, [id]);
 
-  function uniqueFocuses() {
-    const focuses = gym.gym_members.map(product => product.focus)
-    const uniqueFocuses = [...new Set(focuses)];
-    return uniqueFocuses
+  function uniquePrices() {
+    const prices = category.products.map(product => product.price)
+    const uniquePrices = [...new Set(prices)];
+    return uniquePrices
   }
 
-  function populateFocusOptions() {
-      return uniqueFocuses().map(focus => <option value={focus}>{focus}</option>)
+  function populatePriceOptions() {
+      return uniquePrices().map(price => <option value={price}>{price}</option>)
   }
 
   function filteredProducts() {
-    if (selectedFocus === "ALL") {
-        return gym.gym_members
+    if (selectedPrice === "ALL") {
+        return category.products
     }
-    return gym.gym_members.filter(product => product.focus === selectedFocus)
+    return category.products.filter(product => product.price === selectedPrice)
   }
 
-  function handleSelectFocus(e) {
-      setSelectedFocus(e.target.value)
+  function handleSelectPrice(e) {
+      setSelectedPrice(e.target.value)
   } 
 
   function createProduct(productDetails) {
     const newProduct = {
       ...productDetails,
-      gym_id: id,
+      category_id: id,
     };
 
-    fetch(BASE_URL + "/gym_members", {
+    fetch(BASE_URL + "/products", {
       method: "POST",
       body: JSON.stringify(newProduct),
     })
       .then((res) => res.json())
       .then((json) => {
-        const newGym = { ...gym, gym_members: [...gym.gym_members, json] };
-        setGym(newGym);
+        const newCategory = { ...category, products: [...category.products, json] };
+        setCategory(newCategory);
       });
   }
 
   return (
     <div>
-      {gym && (
+      {category && (
         <>
-          <p>Gym Name: {gym.name}</p>
-          <p>Gym Location: {gym.location}</p>
-          <h3>Gym Members</h3>
-          <select value={selectedFocus} onChange={handleSelectFocus}>
-              <option value="ALL">All Focuses</option>
-              {populateFocusOptions()}
+          <p>Category Name: {category.name}</p>
+          <h3>Products</h3>
+          <select value={selectedPrice} onChange={handleSelectPrice}>
+              <option value="ALL">All Prices</option>
+              {populatePriceOptions()}
           </select>
           {filteredProducts().map((product) => (
             <Product product={product} />
           ))}
-          <h3>Add new Gym Member</h3>
+          <h3>Add new Product</h3>
           <ProductForm createProduct={createProduct} />
         </>
       )}

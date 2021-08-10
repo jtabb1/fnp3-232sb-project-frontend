@@ -1,6 +1,6 @@
 import "./App.css";
-import GymContainer from "./components/GymContainer";
-import GymDetails from "./components/GymDetails";
+import CategoryContainer from "./components/CategoryContainer";
+import CategoryDetails from "./components/CategoryDetails";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
@@ -15,11 +15,11 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route exact path="/gyms">
-            <GymContainer />
+          <Route exact path="/categories">
+            <CategoryContainer />
           </Route>
-          <Route path="/gyms/:id">
-            <GymDetails />
+          <Route path="/categories/:id">
+            <CategoryDetails />
           </Route>
         </Switch>
       </div>
