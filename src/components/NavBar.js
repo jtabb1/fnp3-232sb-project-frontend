@@ -6,6 +6,7 @@ export default function NavBar() {
     return (
         <div className="navbar">
             <Link to="/">Home</Link>
+            <Link to="/joins">Data from the Join</Link>
             <Link to="/categories">All Categories</Link>
         </div>
     )

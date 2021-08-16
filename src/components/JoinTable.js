@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useEffect } from "react";
 import { BASE_URL } from "../constraints/index.js";
-import Product from "./Product.js";
-import ProductForm from "./ProductForm.js";
+// import { useState } from "react";
+// import { useParams } from "react-router-dom";
+// import Product from "./Product.js";
+// import ProductForm from "./ProductForm.js";
 
-export default function CategoryDetails() {
+export default function JoinTable() {
+
+  // READ
+
+  useEffect(() => {
+    fetch(BASE_URL + "categories")
+      .then((res) => res.json())
+      .then((json) => console.log(json));
+  }, []);
+
+  return ( <div><p>Hello.</p></div> );
+
+  /*
   const [category, setCategory] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState("ALL")
 
   const { id } = useParams();
 
-  useEffect(() => {
+  useEffect( () => {
     fetch(BASE_URL + "categories/" + id)
       .then((res) => res.json())
       .then((json) => setCategory(json));
@@ -30,7 +44,7 @@ export default function CategoryDetails() {
     if (selectedPrice === "ALL") {
         return category.products
     }
-    return category.products.filter(product => parseInt(product.price) === parseInt(selectedPrice) )
+    return category.products.filter(product => product.price === selectedPrice)
   }
 
   function handleSelectPrice(e) {
@@ -73,4 +87,6 @@ export default function CategoryDetails() {
       )}
     </div>
   );
+  */
+
 }
