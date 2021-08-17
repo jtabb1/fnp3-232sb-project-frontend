@@ -42,8 +42,8 @@ export default function Category({ category, deleteCategory, updateCategory }) {
           <form onSubmit={handleUpdate}>
             <input name="name" value={newCategory.name} onChange={handleChange} />
             <input
-              name="location"
-              value={newCategory.location}
+              name="photo_filename"
+              value={newCategory.photo_filename}
               onChange={handleChange}
             />
             <button type="submit">Update Category</button>

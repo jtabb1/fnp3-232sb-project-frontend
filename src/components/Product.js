@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Product({ product }) {
+export default function Product({ product, deleteProduct }) {
 
   const imgPath = "/assets/";
   const img_filename = product.photo_filename;
@@ -20,15 +20,17 @@ export default function Product({ product }) {
 
           <h5>{product.name}</h5>
           
-          <div className="mt-1 mb-1 spec-1">
+          {/* <div className="mt-1 mb-1 spec-1">
             <span>100% cotton</span><span className="dot"></span><span>Light weight</span>
           </div>
 
           <div className="mt-1 mb-1 spec-1">
             <span>Unique design</span><span className="dot"></span><span>For men</span>
-          </div>
+          </div> */}
 
           <br />
+
+          <button onClick={() => deleteProduct(product)}>Delete Product</button>
 
       </div>
 

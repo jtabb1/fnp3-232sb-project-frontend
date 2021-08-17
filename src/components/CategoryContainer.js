@@ -76,8 +76,12 @@ export default function CategoryContainer() {
   return (
     <div className="container">
       <h2 className="categories-header">All Categories</h2>
-      <div className="category-container">{categories && populateCategories()}</div>
-      <CategoryForm createCategory={createCategory} />
+      <div className="row">
+        <div className="category-container">{categories && populateCategories()}</div>
+      </div>
+      <div className="row">
+        <CategoryForm createCategory={createCategory} />
+      </div>
     </div>
   );
 }

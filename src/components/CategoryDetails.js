@@ -16,6 +16,21 @@ export default function CategoryDetails() {
       .then((json) => setCategory(json));
   }, [id]);
 
+  // DELETE
+
+  function deleteProduct(product) {
+    fetch(BASE_URL + "products/" + product.id, {
+      method: "DELETE",
+    });
+    console.log(category);
+    const newProducts = category.products.filter((g) => g.id !== product.id);
+    const newCategory = {...category};
+    newCategory["products"] = newProducts;
+    console.log(newCategory);
+    setCategory(newCategory);
+  }
+
+  
   function uniquePrices() {
     const prices = category.products.map(product => product.price)
     const uniquePrices = [...new Set(prices)];
@@ -68,7 +83,7 @@ export default function CategoryDetails() {
                   {populatePriceOptions()}
               </select>
               {filteredProducts().map((product) => (
-                <Product key={product.id} product={product} />
+                <Product key={product.id} product={product} deleteProduct={deleteProduct}/>
               ))}
               <h3>Add new Product</h3>
               <ProductForm createProduct={createProduct} />
