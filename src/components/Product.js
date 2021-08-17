@@ -2,12 +2,9 @@ import React from "react";
 
 export default function Product({ product }) {
 
-  // const imgPath = "https://replit.com/@jtabb1/2021-08-15-Bootstrap-Catagory-List-Page#assets/";
   const imgPath = "/assets/";
   const img_filename = product.photo_filename;
-  // const img_filename = 'maguro.png';
   const imgUrl = `${imgPath}${img_filename}`;
-  console.log(imgUrl);
 
   return (
 

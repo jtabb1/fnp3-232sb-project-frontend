@@ -4,7 +4,7 @@ import Category from "./Category.js";
 import CategoryForm from "./CategoryForm.js";
 import '../styles/CategoryContainer.css'
 
-export default function CategoryContainer() {
+export default function SellerContainer() {
   const [categories, setCategories] = useState(null);
 
   // READ

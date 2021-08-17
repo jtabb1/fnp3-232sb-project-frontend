@@ -17,6 +17,7 @@ export default function CategoryContainer() {
 
   function populateCategories() {
     console.log(categories);
+    //let ctr = 1, or javascript map with index ?
     return categories.map((category) => (
       <Category category={category} deleteCategory={deleteCategory} updateCategory={updateCategory} key={category.id} />
     ));
@@ -73,7 +74,7 @@ export default function CategoryContainer() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h2 className="categories-header">All Categories</h2>
       <div className="category-container">{categories && populateCategories()}</div>
       <CategoryForm createCategory={createCategory} />

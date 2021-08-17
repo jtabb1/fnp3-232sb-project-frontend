@@ -22,11 +22,18 @@ export default function Category({ category, deleteCategory, updateCategory }) {
     setEditMode(false);
   }
 
+  const imgPath = "/assets/";
+  const img_filename = category.photo_filename;
+  const imgUrl = `${imgPath}${img_filename}`;
+  
   return (
-    <div className="category-card">
+    <div className="col category-card">
       <Link to={`/categories/${category.id}`}>
         <p>{category.name}</p>
       </Link>
+
+      <img className="img-fluid img-responsive rounded product-image" src={imgUrl} alt={category.name} />
+
       <p>{category.location}</p>
       {editMode && (
         <>
