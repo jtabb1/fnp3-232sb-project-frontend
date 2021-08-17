@@ -23,7 +23,7 @@ export default function CategoryDetails() {
   }
 
   function populatePriceOptions() {
-      return uniquePrices().map(price => <option value={price}>{price}</option>)
+      return uniquePrices().map(price => <option key={price} value={price}>{price}</option>)
   }
 
   function filteredProducts() {
@@ -57,19 +57,25 @@ export default function CategoryDetails() {
   return (
     <div>
       {category && (
-        <>
-          <p>Category Name: {category.name}</p>
-          <h3>Products</h3>
-          <select value={selectedPrice} onChange={handleSelectPrice}>
-              <option value="ALL">All Prices</option>
-              {populatePriceOptions()}
-          </select>
-          {filteredProducts().map((product) => (
-            <Product product={product} />
-          ))}
-          <h3>Add new Product</h3>
-          <ProductForm createProduct={createProduct} />
-        </>
+        <div className="container mt-5 mb-5">
+          <div className="d-flex justify-content-center row">
+            <div className="col-md-10">
+
+              <p>Category Name: {category.name}</p>
+              <h3>Products</h3>
+              <select value={selectedPrice} onChange={handleSelectPrice}>
+                  <option value="ALL">All Prices</option>
+                  {populatePriceOptions()}
+              </select>
+              {filteredProducts().map((product) => (
+                <Product key={product.id} product={product} />
+              ))}
+              <h3>Add new Product</h3>
+              <ProductForm createProduct={createProduct} />
+
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

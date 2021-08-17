@@ -2,7 +2,12 @@ import React from "react";
 
 export default function Product({ product }) {
 
-  const imgPath = "./assets/";
+  // const imgPath = "https://replit.com/@jtabb1/2021-08-15-Bootstrap-Catagory-List-Page#assets/";
+  const imgPath = "/assets/";
+  const img_filename = product.photo_filename;
+  // const img_filename = 'maguro.png';
+  const imgUrl = `${imgPath}${img_filename}`;
+  console.log(imgUrl);
 
   return (
 
@@ -10,7 +15,7 @@ export default function Product({ product }) {
 
       <div className="col-md-3 mt-1">
 
-        <img className="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/QpjAiHq.jpg" />
+        <img className="img-fluid img-responsive rounded product-image" src={imgUrl} alt={product.name}/>
 
       </div>
 
@@ -33,7 +38,7 @@ export default function Product({ product }) {
       <div className="align-items-center align-content-center col-md-3 border-left mt-1">
           <div className="d-flex flex-row align-items-center">
 
-              <h4 className="mr-1">$13.99</h4><span>&nbsp;</span><span className="strike-text">$20.99</span>
+              <h4 className="mr-1">{product.price}</h4><span>&nbsp;</span><span className="strike-text">{product.msrp}</span>
               
           </div>
           <h6 className="text-success">Free shipping</h6>
