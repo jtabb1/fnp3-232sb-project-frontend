@@ -16,7 +16,7 @@ export default function CategoryContainer() {
   }, []);
 
   function populateCategories() {
-    console.log(categories);
+    // console.log(categories);
     //let ctr = 1, or javascript map with index ?
     return categories.map((category) => (
       <Category category={category} deleteCategory={deleteCategory} updateCategory={updateCategory} key={category.id} />

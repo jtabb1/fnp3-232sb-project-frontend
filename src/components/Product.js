@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/Product.css'
 
 export default function Product({ product, deleteProduct }) {
 
@@ -37,7 +38,7 @@ export default function Product({ product, deleteProduct }) {
       <div className="align-items-center align-content-center col-md-3 border-left mt-1">
           <div className="d-flex flex-row align-items-center">
 
-              <h4 className="mr-1">{product.price}</h4><span>&nbsp;</span><span className="strike-text">{product.msrp}</span>
+              <h4 className="mr-1">{product.price/100}</h4><span>&nbsp;</span><span className="strike-text">{product.msrp/100}</span>
               
           </div>
           <h6 className="text-success">Free shipping</h6>

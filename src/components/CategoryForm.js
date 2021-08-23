@@ -17,6 +17,7 @@ export default function CategoryForm({createCategory}) {
 
     return (
         <div>
+          <br />
             <h2>Create New Category</h2>
             <form onSubmit={handleSubmit}>
               <input name="name" value={category.name} onChange={handleChange} />

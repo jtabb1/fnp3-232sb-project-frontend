@@ -3,6 +3,6 @@
     padding: 1rem;
     border: 1px solid black;
     width: 25vw;
-    height: 25vh;
+    /* height: 25vh; */
     background-color: bisque;
 }

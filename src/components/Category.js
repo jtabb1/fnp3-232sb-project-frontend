@@ -34,9 +34,8 @@ export default function Category({ category, deleteCategory, updateCategory }) {
 
       <img className="img-fluid img-responsive rounded product-image" src={imgUrl} alt={category.name} />
 
-      <p>{category.location}</p>
       {editMode && (
-        <>
+        <div>
           <button onClick={() => deleteCategory(category)}>Delete Category</button>
 
           <form onSubmit={handleUpdate}>
@@ -48,7 +47,7 @@ export default function Category({ category, deleteCategory, updateCategory }) {
             />
             <button type="submit">Update Category</button>
           </form>
-        </>
+        </div>
       )}
       <button onClick={toggleEdit}>Edit</button>
     </div>

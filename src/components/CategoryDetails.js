@@ -22,11 +22,11 @@ export default function CategoryDetails() {
     fetch(BASE_URL + "products/" + product.id, {
       method: "DELETE",
     });
-    console.log(category);
+    // console.log(category);
     const newProducts = category.products.filter((g) => g.id !== product.id);
     const newCategory = {...category};
     newCategory["products"] = newProducts;
-    console.log(newCategory);
+    // console.log(newCategory);
     setCategory(newCategory);
   }
 
