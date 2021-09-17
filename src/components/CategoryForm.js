@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 export default function CategoryForm({createCategory}) {
-    const [category, setCategory] = useState({name: "", location: ""})
+    const [category, setCategory] = useState({photo_filename: "", name: ""})
 
     function handleChange(e) {
         const updatedValue = {...category}
